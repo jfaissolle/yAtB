@@ -48,6 +48,25 @@
   cursor: pointer;
 }
 
+.cardeditor {
+
+  padding-bottom: 0;
+  margin-bottom: 10px;
+  textarea {
+    width: 100%;
+    resize: vertical;
+    background: none;
+    border: medium none;
+    box-shadow: none;
+    height: 50px;
+    margin: 0 0 4px;
+    overflow-y: auto;
+    padding: 0;
+    outline: none;
+  }
+  
+}
+
 
 
 .spacer {

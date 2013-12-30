@@ -39,7 +39,6 @@
       handleDrop: function(e) {
         if (this.props.onDrop) {
           this.props.onDrop({
-            destIndex: this.props.index,
             origin: e.nativeEvent.dataTransfer.getData('Text')
           }); 
         }
@@ -64,7 +63,6 @@
       },
       handleDragStart: function(e) {
         this.props.onDrag(e, this.props.task);
-        //e.nativeEvent.dataTransfer.setData('Text', this.props.task.id);
         this.setState({dragged: true});
       },
       handleDragEnd: function(e) {
@@ -89,12 +87,43 @@
       }
     });
     
+    
+    var CardEditor = React.createClass({
+      getInitialState: function() {
+        return {editing: false};
+      },
+      handleNew: function() {
+        this.setState({editing: true});
+      },
+      componentDidUpdate: function() {
+        if (this.state.editing) {
+          this.refs.textinput.getDOMNode().focus();
+        }
+      },
+      render: function() {
+        var self = this;
+        if (!this.state.editing) {
+          return <button onClick={self.handleNew}>New</button>;
+        } else {
+          return (
+            <div>
+              <article className="taskcard cardeditor">
+                <textarea ref="textinput"/>
+              </article>
+              <button onClick={self.handleAdd}>Add</button>
+              <button onClick={self.handleCancel}>Cancel</button>
+            </div>
+          );
+        }
+      }
+    });
+    
     var TaskLane = React.createClass({
       onDrag: function(e, task) {
         e.nativeEvent.dataTransfer.setData('Text', this.props.name+','+task.id);
       },
-      onDrop: function(dropInfo) {
-        dropInfo.destination = this.props.name;
+      onDrop: function(index, dropInfo) {
+        dropInfo.destIndex = index; 
         this.props.onCardDrop(dropInfo);
       },
       render: function() {
@@ -103,7 +132,7 @@
         var cards = this.props.tasks.map(function(task) {
           return (
             <div key={task.id}>
-              <DropZone index={index++} onDrop={self.onDrop} />
+              <DropZone onDrop={self.onDrop.bind(self, index++)} />
               <TaskCard task={task} onDrag={self.onDrag} />
             </div>
           );
@@ -114,21 +143,20 @@
             <div>
               {cards}
             </div>
-            <DropZone index={index++} onDrop={self.onDrop} />
-            <button>Add</button>
+            <DropZone onDrop={self.onDrop.bind(self, index++)} />
+            <CardEditor />
           </section>
         );
       }
     });
     
     var TaskBoard = React.createClass({
-      onCardDrop: function(dropInfo) {
-        console.log(dropInfo);
+      onCardDrop: function(dropLane, dropInfo) {
         var splittedOrig = dropInfo.origin.split(',');
         var taskboard = this.props.taskboard;
         taskboard.moveTask(
           _.parseInt(splittedOrig[1]), splittedOrig[0],
-          dropInfo.destination, dropInfo.destIndex
+          dropLane, dropInfo.destIndex
         );
         
         this.setProps({taskboard: taskboard});
@@ -137,7 +165,7 @@
         var self = this;
         var lanes = this.props.taskboard.tasklanes.map(function(lane) {
           return <TaskLane key={lane.name} name={lane.name} tasks={lane.tasks}
-                           onCardDrop={self.onCardDrop} />;
+                           onCardDrop={self.onCardDrop.bind(self, lane.name)} />;
         });
         
         return (
