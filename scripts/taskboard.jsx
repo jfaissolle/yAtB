@@ -114,6 +114,7 @@
             <div>
               {cards}
             </div>
+            <DropZone index={index++} onDrop={self.onDrop} />
             <button>Add</button>
           </section>
         );
