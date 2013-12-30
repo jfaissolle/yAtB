@@ -95,6 +95,16 @@
       handleNew: function() {
         this.setState({editing: true});
       },
+      handleChange: function(e) {
+        this.setState({tasktext: e.target.value});
+      },
+      handleAdd: function() {
+        this.props.onAdd({title: this.state.tasktext});
+        this.setState({editing: false});
+      },
+      handleCancel: function() {
+        this.setState({editing: false});
+      },
       componentDidUpdate: function() {
         if (this.state.editing) {
           this.refs.textinput.getDOMNode().focus();
@@ -108,7 +118,7 @@
           return (
             <div>
               <article className="taskcard cardeditor">
-                <textarea ref="textinput"/>
+                <textarea ref="textinput" onChange={self.handleChange} />
               </article>
               <button onClick={self.handleAdd}>Add</button>
               <button onClick={self.handleCancel}>Cancel</button>
@@ -144,14 +154,14 @@
               {cards}
             </div>
             <DropZone onDrop={self.onDrop.bind(self, index++)} />
-            <CardEditor />
+            <CardEditor onAdd={self.props.onCardAdd} />
           </section>
         );
       }
     });
     
     var TaskBoard = React.createClass({
-      onCardDrop: function(dropLane, dropInfo) {
+      onCardMove: function(dropLane, dropInfo) {
         var splittedOrig = dropInfo.origin.split(',');
         var taskboard = this.props.taskboard;
         taskboard.moveTask(
@@ -161,11 +171,18 @@
         
         this.setProps({taskboard: taskboard});
       },
+      onCardAdd: function(lane, card) {
+        console.log("Added", card, "in", lane);
+        var taskboard = this.props.taskboard;
+        taskboard.addTask(card, lane);
+        this.setProps({taskboard: taskboard});
+      },
       render: function() {
         var self = this;
         var lanes = this.props.taskboard.tasklanes.map(function(lane) {
           return <TaskLane key={lane.name} name={lane.name} tasks={lane.tasks}
-                           onCardDrop={self.onCardDrop.bind(self, lane.name)} />;
+                           onCardDrop={self.onCardMove.bind(self, lane)}
+                           onCardAdd={self.onCardAdd.bind(self, lane)}/>;
         });
         
         return (
@@ -178,6 +195,7 @@
     
   
     var taskboard = {
+      seq: 7,
       tasklanes: [
         {
           name: 'ToDo',
@@ -201,11 +219,14 @@
           ]
         }
       ],
+      addTask: function(task, lane) {
+        task.id = this.seq++;
+        lane.tasks.push(task);
+      },
       moveTask: function(taskId, origLane, destLane, destIndex) {
         var fromLane = this.getLane(origLane);
-        var toLane = this.getLane(destLane);
         var task = (_.remove(fromLane.tasks, {id: taskId}))[0];
-        toLane.tasks.splice(destIndex, 0, task);
+        destLane.tasks.splice(destIndex, 0, task);
       },
       getLane: function(laneName) {
          return _.find(this.tasklanes, {name: laneName});
