@@ -1,5 +1,5 @@
 /** @jsx React.DOM */
-var Components = (function(comps) {
+var TaskComponents = (function(comps) {
   "use strict";
     
   var cx = React.addons.classSet;
@@ -166,5 +166,5 @@ var Components = (function(comps) {
       
   return comps;
   
-})(Components || {});
+})(TaskComponents || {});
 
