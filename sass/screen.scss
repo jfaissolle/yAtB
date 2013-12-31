@@ -62,15 +62,20 @@ body {
 }
 
 .taskcard {
+  font-size: 0;
   position: relative;
   border: 1px solid gray;
-  padding: 10px 10px 0px 10px;
+  padding: 10px;
   margin-right: 8px;
   //min-height: 50px;
   background-color: $cardcolor;
   @include box-shadow(3px 3px 5px rgba(50, 50, 50, 0.75));
   @include border-radius(3px);
   cursor: pointer;
+  
+  div {
+    font-size: $blueprint-font-size; 
+  }
 }
 
 .field p {

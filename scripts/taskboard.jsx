@@ -4,9 +4,9 @@
   
 
   var cx = React.addons.classSet;
-  var CardDetail = Components.CardDetail;
-  var CardEditor = Components.CardEditor;
-  var TaskCard = Components.TaskCard;
+  var CardDetail = TaskComponents.CardDetail;
+  var CardEditor = TaskComponents.CardEditor;
+  var TaskCard = TaskComponents.TaskCard;
   
   var TagList = React.createClass({
     render: function() {
