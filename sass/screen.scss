@@ -59,7 +59,7 @@ body {
 }
 
 .cardeditor {
-  padding: 5px 15px 0px 5px;
+  padding: 5px 15px 2px 5px;
   margin-bottom: 10px;
   background-color: tint($cardcolor, 90%);
   
@@ -70,7 +70,6 @@ body {
     border: medium none;
     box-shadow: none;
     min-height: 50px;
-    margin: 0px;
     overflow-y: auto;
     padding: 5px;
     outline: 2px dashed #0090D2;
