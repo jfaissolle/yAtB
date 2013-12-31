@@ -381,9 +381,10 @@ body {
 
 /* line 64, ../sass/screen.scss */
 .taskcard {
+  font-size: 0;
   position: relative;
   border: 1px solid gray;
-  padding: 10px 10px 0px 10px;
+  padding: 10px;
   margin-right: 8px;
   background-color: #fff6e8;
   -webkit-box-shadow: 3px 3px 5px rgba(50, 50, 50, 0.75);
@@ -396,13 +397,17 @@ body {
   border-radius: 3px;
   cursor: pointer;
 }
-
 /* line 76, ../sass/screen.scss */
+.taskcard div {
+  font-size: 12px;
+}
+
+/* line 81, ../sass/screen.scss */
 .field p {
   margin: 0px;
 }
 
-/* line 80, ../sass/screen.scss */
+/* line 85, ../sass/screen.scss */
 textarea {
   width: 100%;
   resize: vertical;
@@ -414,36 +419,36 @@ textarea {
   outline: 2px dashed #0090d2;
 }
 
-/* line 91, ../sass/screen.scss */
+/* line 96, ../sass/screen.scss */
 .cardeditor {
   padding: 5px 15px 2px 5px;
   margin-bottom: 10px;
   background-color: #fffefc;
 }
-/* line 96, ../sass/screen.scss */
+/* line 101, ../sass/screen.scss */
 .cardeditor textarea {
   min-height: 50px;
   overflow-y: auto;
 }
 
-/* line 103, ../sass/screen.scss */
+/* line 108, ../sass/screen.scss */
 .editable:hover {
   outline: 2px dashed #0090d2;
 }
 
-/* line 107, ../sass/screen.scss */
+/* line 112, ../sass/screen.scss */
 .spacer {
   min-height: 10px;
   margin: 5px 0 5px 0;
 }
 
-/* line 112, ../sass/screen.scss */
+/* line 117, ../sass/screen.scss */
 .spacer.over {
   min-height: 70px;
   border: 2px dashed black;
 }
 
-/* line 117, ../sass/screen.scss */
+/* line 122, ../sass/screen.scss */
 button {
   display: -moz-inline-stack;
   display: inline-block;
@@ -492,13 +497,13 @@ button:hover {
   color: #336699;
 }
 
-/* line 123, ../sass/screen.scss */
+/* line 128, ../sass/screen.scss */
 .task-icons {
   position: absolute;
   bottom: 0px;
 }
 
-/* line 128, ../sass/screen.scss */
+/* line 133, ../sass/screen.scss */
 .bullet {
   border: 1px solid gray;
   -webkit-border-radius: 4px 4px;
@@ -509,7 +514,7 @@ button:hover {
   display: inline-block;
 }
 
-/* line 137, ../sass/screen.scss */
+/* line 142, ../sass/screen.scss */
 [draggable] {
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -520,12 +525,12 @@ button:hover {
   -webkit-user-drag: element;
 }
 
-/* line 147, ../sass/screen.scss */
+/* line 152, ../sass/screen.scss */
 .dragged {
   opacity: 0.4;
 }
 
-/* line 152, ../sass/screen.scss */
+/* line 157, ../sass/screen.scss */
 .md-modal {
   position: fixed;
   top: 50%;
@@ -542,7 +547,7 @@ button:hover {
   transform: translate(-50%, -50%);
 }
 
-/* line 163, ../sass/screen.scss */
+/* line 168, ../sass/screen.scss */
 .modal-enter {
   -webkit-transform: scale(0.7);
   -moz-transform: scale(0.7);
@@ -556,7 +561,7 @@ button:hover {
   transition: all 0.3s;
 }
 
-/* line 169, ../sass/screen.scss */
+/* line 174, ../sass/screen.scss */
 .modal-enter.modal-enter-active {
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
@@ -566,7 +571,7 @@ button:hover {
   opacity: 1;
 }
 
-/* line 174, ../sass/screen.scss */
+/* line 179, ../sass/screen.scss */
 .md-content {
   position: relative;
   background: #fff6e8;
@@ -577,11 +582,11 @@ button:hover {
   border-radius: 3px;
   margin: 0 auto;
 }
-/* line 180, ../sass/screen.scss */
+/* line 185, ../sass/screen.scss */
 .md-content > div {
   min-height: 100px;
 }
-/* line 184, ../sass/screen.scss */
+/* line 189, ../sass/screen.scss */
 .md-content header {
   padding: 10px;
   opacity: 0.8;
@@ -592,7 +597,7 @@ button:hover {
   -o-border-radius: 3px 3px 0 0;
   border-radius: 3px 3px 0 0;
 }
-/* line 190, ../sass/screen.scss */
+/* line 195, ../sass/screen.scss */
 .md-content header a.close {
   position: absolute;
   top: 0px;
@@ -602,17 +607,17 @@ button:hover {
   color: #999999;
   text-decoration: none;
 }
-/* line 199, ../sass/screen.scss */
+/* line 204, ../sass/screen.scss */
 .md-content header a.close:hover {
   color: #333333;
   cursor: pointer;
 }
-/* line 205, ../sass/screen.scss */
+/* line 210, ../sass/screen.scss */
 .md-content header h3 {
   margin: 0px 30px 0px 0px;
 }
 
-/* line 212, ../sass/screen.scss */
+/* line 217, ../sass/screen.scss */
 .md-overlay {
   position: fixed;
   width: 100%;
@@ -629,7 +634,7 @@ button:hover {
   transition: all 0.3s;
 }
 
-/* line 224, ../sass/screen.scss */
+/* line 229, ../sass/screen.scss */
 .md-show {
   visibility: visible;
   opacity: 1;
