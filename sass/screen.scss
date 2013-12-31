@@ -22,11 +22,11 @@ body {
 
 .main {
   @include container();
+  margin: 50px 0px 0px 20px;
 }
 
 .sidebar {
   @include column(4);
-  height: 100%;
 }
 
 .taglist {
@@ -40,6 +40,21 @@ body {
 
 .tasklane {
   @include column(8);
+  
+  & > div {
+    padding-left: 5px;
+  }
+  
+  header {
+    @include border-top-radius(5px);
+    border: 1px solid black;
+    padding: 5px;
+    background: #415A6B; 
+    
+    h2 {
+      margin-bottom: 0px; 
+    }
+  }
 }
 
 .tasklane:last-child {
@@ -49,13 +64,17 @@ body {
 .taskcard {
   position: relative;
   border: 1px solid gray;
-  padding: 10px;
+  padding: 10px 10px 0px 10px;
   margin-right: 8px;
-  min-height: 50px;
+  //min-height: 50px;
   background-color: $cardcolor;
   @include box-shadow(3px 3px 5px rgba(50, 50, 50, 0.75));
   @include border-radius(3px);
   cursor: pointer;
+}
+
+.field p {
+  margin: 0px; 
 }
 
 textarea {

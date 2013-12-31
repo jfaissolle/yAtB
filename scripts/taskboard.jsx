@@ -2,7 +2,11 @@
 (function() {
   'use strict';
   
+
   var cx = React.addons.classSet;
+  var CardDetail = Components.CardDetail;
+  var CardEditor = Components.CardEditor;
+  var TaskCard = Components.TaskCard;
   
   var TagList = React.createClass({
     render: function() {
@@ -57,77 +61,7 @@
     }
   });
   
-  var TaskCard = React.createClass({
-    getInitialState: function() {
-      return {dragged: false};
-    },
-    handleDragStart: function(e) {
-      this.props.onDrag(e);
-      this.setState({dragged: true});
-    },
-    handleDragEnd: function(e) {
-      e.preventDefault();
-      this.setState({dragged: false});
-      return false;
-    },
-    render: function() {
-      var classes = cx({
-        taskcard: true,
-        dragged: this.state.dragged
-      });
-      return (
-        <article onDragStart={this.handleDragStart}     
-                 onDragEnd={this.handleDragEnd}
-                 onClick={this.props.onSelect}
-                 draggable="true" className={classes}>
-          {this.props.task.title}
-          <img className="profile-pic"/>
-          <div className="task-icons"></div>
-        </article>
-      );
-    }
-  });
-  
-  
-  var CardEditor = React.createClass({
-    getInitialState: function() {
-      return {editing: false};
-    },
-    handleNew: function() {
-      this.setState({editing: true});
-    },
-    handleChange: function(e) {
-      this.setState({tasktext: e.target.value});
-    },
-    handleAdd: function() {
-      this.props.onAdd({title: this.state.tasktext});
-      this.setState({editing: false});
-    },
-    handleCancel: function() {
-      this.setState({editing: false});
-    },
-    componentDidUpdate: function() {
-      if (this.state.editing) {
-        this.refs.textinput.getDOMNode().focus();
-      }
-    },
-    render: function() {
-      var self = this;
-      if (!this.state.editing) {
-        return <button onClick={self.handleNew}>New</button>;
-      } else {
-        return (
-          <div>
-            <article className="taskcard cardeditor">
-              <textarea placeholder="Task Title" ref="textinput" onChange={self.handleChange} />
-            </article>
-            <button onClick={self.handleAdd}>Add</button>
-            <button onClick={self.handleCancel}>Cancel</button>
-          </div>
-        );
-      }
-    }
-  });
+
   
   var TaskLane = React.createClass({
     onDragCard: function(task, e) {
@@ -151,12 +85,16 @@
       });
       return (
         <section className="tasklane">
-          <h2>{this.props.name}</h2>
+          <header>
+            <h2>{this.props.name} ({this.props.tasks.length})</h2>
+          </header>
           <div>
-            {cards}
+            <div>
+              {cards}
+            </div>
+            <DropZone onDrop={self.onDrop.bind(self, index++)} />
+            <CardEditor onAdd={self.props.onCardAdd} />
           </div>
-          <DropZone onDrop={self.onDrop.bind(self, index++)} />
-          <CardEditor onAdd={self.props.onCardAdd} />
         </section>
       );
     }
@@ -235,7 +173,6 @@
     }
   }
  
-  
   var tags = [
     {name: 'Assignment 1', color: 'green'},
     {name: 'Assignment 2', color: 'yellow'},
@@ -258,7 +195,6 @@
       hideDetails();
     }
     
-    var CardDetail = Components.CardDetail;
     
     var detail = React.renderComponent(
       <CardDetail onClose={hideDetails} onTaskUpdate={updateTask} />,
