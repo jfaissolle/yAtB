@@ -3,6 +3,7 @@
   'use strict';
   $(function() {
     var cx = React.addons.classSet;
+    var ReactTransitionGroup = React.addons.TransitionGroup;
     
     var TagList = React.createClass({
       render: function() {
@@ -62,7 +63,7 @@
         return {dragged: false};
       },
       handleDragStart: function(e) {
-        this.props.onDrag(e, this.props.task);
+        this.props.onDrag(e);
         this.setState({dragged: true});
       },
       handleDragEnd: function(e) {
@@ -78,6 +79,7 @@
         return (
           <article onDragStart={this.handleDragStart}     
                    onDragEnd={this.handleDragEnd}
+                   onClick={this.props.onSelect}
                    draggable="true" className={classes}>
             {this.props.task.title}
             <img className="profile-pic"/>
@@ -118,7 +120,7 @@
           return (
             <div>
               <article className="taskcard cardeditor">
-                <textarea ref="textinput" onChange={self.handleChange} />
+                <textarea placeholder="Task Title" ref="textinput" onChange={self.handleChange} />
               </article>
               <button onClick={self.handleAdd}>Add</button>
               <button onClick={self.handleCancel}>Cancel</button>
@@ -129,7 +131,7 @@
     });
     
     var TaskLane = React.createClass({
-      onDrag: function(e, task) {
+      onDragCard: function(task, e) {
         e.nativeEvent.dataTransfer.setData('Text', this.props.name+','+task.id);
       },
       onDrop: function(index, dropInfo) {
@@ -143,7 +145,8 @@
           return (
             <div key={task.id}>
               <DropZone onDrop={self.onDrop.bind(self, index++)} />
-              <TaskCard task={task} onDrag={self.onDrag} />
+              <TaskCard task={task} onDrag={self.onDragCard.bind(self, task)}
+                                    onSelect={self.props.onSelectCard.bind(null, task)} />
             </div>
           );
         });
@@ -172,7 +175,6 @@
         this.setProps({taskboard: taskboard});
       },
       onCardAdd: function(lane, card) {
-        console.log("Added", card, "in", lane);
         var taskboard = this.props.taskboard;
         taskboard.addTask(card, lane);
         this.setProps({taskboard: taskboard});
@@ -182,7 +184,8 @@
         var lanes = this.props.taskboard.tasklanes.map(function(lane) {
           return <TaskLane key={lane.name} name={lane.name} tasks={lane.tasks}
                            onCardDrop={self.onCardMove.bind(self, lane)}
-                           onCardAdd={self.onCardAdd.bind(self, lane)}/>;
+                           onCardAdd={self.onCardAdd.bind(self, lane)}
+                           onSelectCard={self.props.onSelectCard} />;
         });
         
         return (
@@ -193,6 +196,50 @@
       }
     });
     
+    var CardDetail = React.createClass({
+      componentDidUpdate: function() {
+        var self = this;
+        if (this.props.task) {
+          $('#overlay')
+            .addClass('md-show')
+            .bind('click', function() {
+              self.props.onClose();
+              $('#overlay').unbind('click');
+            });
+          
+        } else {
+          $('#overlay').removeClass('md-show');
+        }
+      },
+      render: function() {
+        var self = this;
+        var task = this.props.task;
+        var content = task ? (
+          <ReactTransitionGroup transitionName="modal" component={React.DOM.div}>
+            <div className="md-content">
+              <header>
+                <h3 contentEditable="true">                  
+                  {task.title}
+                </h3>
+                <a onClick={self.props.onClose} className="close">X</a>
+              </header>
+              <div>
+                
+              </div>
+            </div>
+          </ReactTransitionGroup>) : ""
+        
+        if (this.props.task) {
+          $('#overlay').addClass('md-show');
+        }
+        
+        return (
+          <div className="md-modal">
+            {content}
+          </div>
+        );
+      }
+    });
   
     var taskboard = {
       seq: 7,
@@ -240,16 +287,36 @@
       {name: 'Assignment 2', color: 'yellow'},
       {name: 'Assignment 3', color: 'red'}
     ];
+
+
+    var app = function() {
+      
+      function showDetails(task) {
+        detail.setProps({task: task});      
+      }
+
+      function hideDetails() {
+        detail.setProps({task: null});
+      }
+      
+      var detail = React.renderComponent(
+        <CardDetail onClose={hideDetails} />,
+        document.getElementById('modal')
+      );
+      
+      React.renderComponent(
+        <TagList tags={tags} />,
+        document.getElementById('taglist')
+      );
+      
+      React.renderComponent(
+        <TaskBoard taskboard={taskboard} onSelectCard={showDetails} />,
+        document.getElementById('taskboard')
+      );
+    };
+
+    app();
     
-    React.renderComponent(
-      <TagList tags={tags} />,
-      document.getElementById('taglist')
-    );
-    
-    React.renderComponent(
-      <TaskBoard taskboard={taskboard} />,
-      document.getElementById('taskboard')
-    );
   });
 })();
 
