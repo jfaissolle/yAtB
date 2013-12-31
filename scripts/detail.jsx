@@ -128,13 +128,15 @@ var TaskComponents = (function(comps) {
       return {editing: false};
     },
     handleNew: function() {
-      this.setState({editing: true});
+      this.setState({editing: true, tasktext: ''});
     },
     handleChange: function(e) {
       this.setState({tasktext: e.target.value});
     },
     handleAdd: function() {
-      this.props.onAdd({title: this.state.tasktext});
+      if (this.state.tasktext.length) {
+        this.props.onAdd({title: this.state.tasktext});
+      }
       this.setState({editing: false});
     },
     handleCancel: function() {
@@ -153,7 +155,8 @@ var TaskComponents = (function(comps) {
         return (
           <div>
             <article className="taskcard cardeditor">
-              <textarea placeholder="Task Title (Markdown)" ref="textinput" onChange={self.handleChange} />
+              <textarea placeholder="Task Title (Markdown)" ref="textinput" value={self.state.tasktext}
+                        onChange={self.handleChange} />
             </article>
             <button onClick={self.handleAdd}>Add</button>
             <button onClick={self.handleCancel}>Cancel</button>
