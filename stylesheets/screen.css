@@ -499,11 +499,10 @@ button:hover {
 
 /* line 128, ../sass/screen.scss */
 .task-icons {
-  position: absolute;
-  bottom: 0px;
+  color: gray;
 }
 
-/* line 133, ../sass/screen.scss */
+/* line 132, ../sass/screen.scss */
 .bullet {
   border: 1px solid gray;
   -webkit-border-radius: 4px 4px;
@@ -514,7 +513,7 @@ button:hover {
   display: inline-block;
 }
 
-/* line 142, ../sass/screen.scss */
+/* line 141, ../sass/screen.scss */
 [draggable] {
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -525,12 +524,12 @@ button:hover {
   -webkit-user-drag: element;
 }
 
-/* line 152, ../sass/screen.scss */
+/* line 151, ../sass/screen.scss */
 .dragged {
   opacity: 0.4;
 }
 
-/* line 157, ../sass/screen.scss */
+/* line 156, ../sass/screen.scss */
 .md-modal {
   position: fixed;
   top: 50%;
@@ -547,7 +546,7 @@ button:hover {
   transform: translate(-50%, -50%);
 }
 
-/* line 168, ../sass/screen.scss */
+/* line 167, ../sass/screen.scss */
 .modal-enter {
   -webkit-transform: scale(0.7);
   -moz-transform: scale(0.7);
@@ -561,7 +560,7 @@ button:hover {
   transition: all 0.3s;
 }
 
-/* line 174, ../sass/screen.scss */
+/* line 173, ../sass/screen.scss */
 .modal-enter.modal-enter-active {
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
@@ -571,7 +570,7 @@ button:hover {
   opacity: 1;
 }
 
-/* line 179, ../sass/screen.scss */
+/* line 178, ../sass/screen.scss */
 .md-content {
   position: relative;
   background: #fff6e8;
@@ -582,9 +581,10 @@ button:hover {
   border-radius: 3px;
   margin: 0 auto;
 }
-/* line 185, ../sass/screen.scss */
+/* line 184, ../sass/screen.scss */
 .md-content > div {
   min-height: 100px;
+  padding: 10px;
 }
 /* line 189, ../sass/screen.scss */
 .md-content header {
@@ -598,6 +598,10 @@ button:hover {
   border-radius: 3px 3px 0 0;
 }
 /* line 195, ../sass/screen.scss */
+.md-content header button {
+  font-size: 12px;
+}
+/* line 199, ../sass/screen.scss */
 .md-content header a.close {
   position: absolute;
   top: 0px;
@@ -607,17 +611,30 @@ button:hover {
   color: #999999;
   text-decoration: none;
 }
-/* line 204, ../sass/screen.scss */
+/* line 208, ../sass/screen.scss */
 .md-content header a.close:hover {
   color: #333333;
   cursor: pointer;
 }
-/* line 210, ../sass/screen.scss */
+/* line 214, ../sass/screen.scss */
 .md-content header h3 {
   margin: 0px 30px 0px 0px;
 }
+/* line 219, ../sass/screen.scss */
+.md-content h4 {
+  margin-bottom: 5px;
+}
+/* line 222, ../sass/screen.scss */
+.md-content .taskdetails {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+/* line 225, ../sass/screen.scss */
+.md-content .taskdetails .editable {
+  min-height: 50px;
+}
 
-/* line 217, ../sass/screen.scss */
+/* line 232, ../sass/screen.scss */
 .md-overlay {
   position: fixed;
   width: 100%;
@@ -634,7 +651,7 @@ button:hover {
   transition: all 0.3s;
 }
 
-/* line 229, ../sass/screen.scss */
+/* line 244, ../sass/screen.scss */
 .md-show {
   visibility: visible;
   opacity: 1;
