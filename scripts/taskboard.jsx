@@ -135,7 +135,7 @@
   
 
   var taskboard = {
-    seq: 7,
+    seq: 8,
     tasklanes: [
       {
         name: 'ToDo',
