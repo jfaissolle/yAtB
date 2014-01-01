@@ -183,7 +183,8 @@ button {
   margin: 0 auto;
   
   & > div {
-    min-height: 100px; 
+    min-height: 100px;
+    padding: 10px;
   }
   
   header {
@@ -191,6 +192,10 @@ button {
     opacity: 0.8;
     background: rgba(0,0,0,0.1);
     @include border-radius(3px 3px 0 0);
+    
+    button {
+      font-size: $blueprint-font-size; 
+    }
     
     a.close {
       position: absolute;
@@ -211,7 +216,18 @@ button {
       margin: 0px 30px 0px 0px;
     }
   }
+  
+  h4 {
+    margin-bottom: 5px; 
+  }
+  .taskdetails {
+    padding-left: 10px;
+    padding-right: 10px;
+    .editable {
+      min-height: 50px; 
+    }
 
+  }
 }
 
 .md-overlay {

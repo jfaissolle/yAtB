@@ -192,7 +192,6 @@
     
     function updateTask(task) {
       taskBoardComp.setProps({taskboard: taskboard});
-      hideDetails();
     }
     
     
