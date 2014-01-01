@@ -23,6 +23,11 @@ var TaskComponents = (function(comps) {
     handleCancel: function() {
       this.setState({value: this.props.value, editing: false});
     },
+    componentDidUpdate: function() {
+      if (this.state.editing) {
+        this.refs.textinput.getDOMNode().focus();
+      }
+    },
     render: function() {
       if (!this.state.editing) {
         var rawMarkup = converter.makeHtml(this.state.value);
@@ -30,7 +35,8 @@ var TaskComponents = (function(comps) {
       } else {
         return (
           <div>
-            <textarea rows="4" onChange={this.handleChange} value={this.state.value}></textarea>
+            <textarea rows="4" ref="textinput" onChange={this.handleChange}
+                      placeholder="Enter Text (Markdown)" value={this.state.value}></textarea>
             <button onClick={this.handleSave}>Save</button>
             <button onClick={this.handleCancel}>Cancel</button>
           </div>
@@ -73,7 +79,10 @@ var TaskComponents = (function(comps) {
               <a onClick={self.props.onClose} className="close">X</a>
             </header>
             <div>
-              
+              <h4>Details</h4>
+              <div className="taskdetails">
+                <Editable value={task.details || ''} onSave={this.onFieldChange.bind(this, 'details')} />
+              </div>
             </div>
           </div>
         </ReactTransitionGroup>) : ""
@@ -116,7 +125,9 @@ var TaskComponents = (function(comps) {
                  draggable="true" className={classes}>
           <div className="field" dangerouslySetInnerHTML={{__html: rawMarkup}} />
           <img className="profile-pic"/>
-          <div className="task-icons"></div>
+          <div className="task-icons">
+            {this.props.task.details ? <i className="fa fa-align-justify"/> : ''}
+          </div>
         </article>
       );
     }

@@ -142,6 +142,7 @@
         tasks: [
           {id: 1, title: 'Prototype UI'},
           {id: 2, title: 'Send Email to teacher assignment 1'},
+          {id: 7, title: 'Task with details', details: 'Some task details...'},
           {id: 3, title: 'Send Email to teacher assignment 2'}
         ]
       },
@@ -192,7 +193,6 @@
     
     function updateTask(task) {
       taskBoardComp.setProps({taskboard: taskboard});
-      hideDetails();
     }
     
     
