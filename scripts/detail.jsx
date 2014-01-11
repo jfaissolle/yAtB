@@ -83,6 +83,8 @@ var TaskComponents = (function(comps) {
               <div className="taskdetails">
                 <Editable value={task.details || ''} onSave={this.onFieldChange.bind(this, 'details')} />
               </div>
+              <h4>Deadline</h4>
+              <Datepicker date={task.date} onChange={this.onFieldChange.bind(this, 'date')} />
             </div>
           </div>
         </ReactTransitionGroup>) : ""
@@ -127,6 +129,7 @@ var TaskComponents = (function(comps) {
           <img className="profile-pic"/>
           <div className="task-icons">
             {this.props.task.details ? <i className="fa fa-align-justify"/> : ''}
+            {this.props.task.date && <i className="fa fa-calendar">{' '+moment(this.props.task.date).format('L')}</i>}
           </div>
         </article>
       );
@@ -175,8 +178,40 @@ var TaskComponents = (function(comps) {
         );
       }
     }
-  });    
-      
+  });
+
+
+  var Datepicker = comps.Datepicker = React.createClass({
+    getInitialState: function() {
+      return {date: this.props.date};
+    },
+    componentDidMount: function(node) {
+      var self = this;
+      this.state.picker =  new Pikaday({ 
+        field: this.refs.datefield.getDOMNode(),
+        format: 'L',
+        onSelect: self.handleChange
+      });
+    },
+    handleChange: function(date) {
+      this.props.onChange(date);
+      this.setState({date: date});
+    },
+    clear: function() {
+      this.props.onChange(null);
+      this.state.picker.setDate(null);
+      this.setState({date: null});
+    },
+    render: function() {
+      return (
+        <div>
+          <input type="text" className="date editable" ref="datefield"
+                 value={this.state.date && moment(this.state.date).format('L')} placeholder="Date"/> 
+          <button onClick={this.clear}>Clear</button>
+        </div>);
+    }
+  });
+  
       
   return comps;
   
