@@ -205,7 +205,7 @@ var TaskComponents = (function(comps) {
     render: function() {
       return (
         <div>
-          <input type="text" className="date editable" ref="datefield"
+          <input type="text" className="date" ref="datefield"
                  value={this.state.date && moment(this.state.date).format('L')} placeholder="Date"/> 
           <button onClick={this.clear}>Clear</button>
         </div>);

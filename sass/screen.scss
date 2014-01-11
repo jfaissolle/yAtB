@@ -17,10 +17,18 @@
 
 @include blueprint-form();
 
-$cardcolor: white;
+$cardcolor: lightyellow;
 
 body {
   color: #565656;
+}
+
+header.top {
+  background: #6d97b3;
+  h1 {
+    color: white;
+    padding: 10px;
+  }
 }
 
 .main {
@@ -106,8 +114,14 @@ textarea {
   
 }
 
-.editable:hover { 
-  outline: 2px dashed #0090D2;
+@mixin hoverline {
+  &:hover {
+    outline: 2px dashed #0090D2;
+  }
+}
+
+.editable { 
+  @include hoverline();
 }
 
 .spacer {
@@ -230,12 +244,16 @@ button {
     .editable {
       min-height: 50px; 
     }
-
+    margin-bottom: 10px;
   }
   input.date {
     width: 100px;
     margin-right: 5px;
-    border: 0 solid white;
+    border: 0;
+    outline: none;
+    background: transparent;
+    
+    @include hoverline();
   }
 
 }
