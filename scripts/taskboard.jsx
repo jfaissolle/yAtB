@@ -135,7 +135,7 @@
   
 
   var taskboard = {
-    seq: 8,
+    seq: 9,
     tasklanes: [
       {
         name: 'ToDo',
@@ -149,8 +149,9 @@
       {
         name: 'Doing',
         tasks: [
-          {id: 4, title: 'Create Slides', state: 'Doing'},
-          {id: 5, title: 'Sketch UI', state: 'Done'}
+          {id: 4, title: 'Create Slides'},
+          {id: 5, title: 'Sketch UI'},
+          {id: 8, title: 'Task with date', date: moment().add('days', 10) }
         ]
       },
       {
@@ -193,6 +194,7 @@
     
     function updateTask(task) {
       taskBoardComp.setProps({taskboard: taskboard});
+      //detail.setProps({task: task});
     }
     
     

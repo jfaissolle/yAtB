@@ -11,13 +11,16 @@
 @import "compass/css3/box-shadow";
 @import "blueprint/buttons";
 @import "blueprint/typography";
-  
+@import "blueprint/form";
+
 @include blueprint-typography();
 
-$cardcolor: #FFF6E8;
+@include blueprint-form();
+
+$cardcolor: white;
 
 body {
-  background-color: #6D97B3;
+  color: #565656;
 }
 
 .main {
@@ -46,12 +49,10 @@ body {
   }
   
   header {
-    @include border-top-radius(5px);
-    border: 1px solid black;
-    padding: 5px;
-    background: #415A6B; 
-    
+    border-bottom: 2px solid gray;
+    padding: 5px;    
     h2 {
+      color: gray;
       margin-bottom: 0px; 
     }
   }
@@ -127,6 +128,10 @@ button {
 
 .task-icons {
   color: gray;
+  
+  i {
+    margin-right: 5px; 
+  }
 }
 
 .bullet {
@@ -227,6 +232,12 @@ button {
     }
 
   }
+  input.date {
+    width: 100px;
+    margin-right: 5px;
+    border: 0 solid white;
+  }
+
 }
 
 .md-overlay {
@@ -244,4 +255,16 @@ button {
 .md-show {
   visibility: visible;
   opacity: 1;
+}
+
+
+
+.pika-single {
+  .pika-prev, .pika-next {
+    margin: 0;
+    padding: 0px; 
+  }
+  th, td, caption {
+    padding: 0px;
+  }
 }
