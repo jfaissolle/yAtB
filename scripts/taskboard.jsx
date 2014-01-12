@@ -11,10 +11,12 @@
   var TagList = React.createClass({
     render: function() {
       var tags = this.props.tags.map(function(tag) {
-        var color = {'background-color': tag.color};
+        var classes = { bullet: true };
+        classes['color-'+tag.id] = true;
+
         return (
-          <li key={tag.name}>
-            <span className="bullet" style={color}></span> {' '+tag.name}
+          <li key={tag+tag.id}>
+            <span key={tag.name} className={cx(classes)}></span> {' '+tag.name}
           </li>
         );
       });
@@ -140,7 +142,7 @@
       {
         name: 'ToDo',
         tasks: [
-          {id: 1, title: 'Prototype UI'},
+          {id: 1, title: 'Prototype UI', tags: [1]},
           {id: 2, title: 'Send Email to teacher assignment 1'},
           {id: 7, title: 'Task with details', details: 'Some task details...'},
           {id: 3, title: 'Send Email to teacher assignment 2'}
@@ -149,7 +151,7 @@
       {
         name: 'Doing',
         tasks: [
-          {id: 4, title: 'Create Slides'},
+          {id: 4, title: 'Create Slides', tags: [1]},
           {id: 5, title: 'Sketch UI'},
           {id: 8, title: 'Task with date', date: moment().add('days', 10) }
         ]
@@ -176,9 +178,9 @@
   }
  
   var tags = [
-    {name: 'Assignment 1', color: 'green'},
-    {name: 'Assignment 2', color: 'yellow'},
-    {name: 'Assignment 3', color: 'red'}
+    {id: 1, name: 'Assignment 1'},
+    {id: 2, name: 'Assignment 2'},
+    {id: 3, name: 'Assignment 3'}
   ];
 
 

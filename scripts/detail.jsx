@@ -79,12 +79,17 @@ var TaskComponents = (function(comps) {
               <a onClick={self.props.onClose} className="close">X</a>
             </header>
             <div>
-              <h4>Details</h4>
+              <h4>Details <i className="fa fa-align-justify"/></h4>
               <div className="taskdetails">
                 <Editable value={task.details || ''} onSave={this.onFieldChange.bind(this, 'details')} />
               </div>
-              <h4>Deadline</h4>
-              <Datepicker date={task.date} onChange={this.onFieldChange.bind(this, 'date')} />
+              <p>
+              Deadline <i className="fa fa-calendar"/><Datepicker date={task.date}
+                        onChange={this.onFieldChange.bind(this, 'date')} />
+              </p>
+              <p>
+              Tags: {_.map(task.tags, function(it) { return <i key={'bullet'+it} className={'bullet color-'+it}></i> })}
+              </p>
             </div>
           </div>
         </ReactTransitionGroup>) : ""
@@ -119,7 +124,9 @@ var TaskComponents = (function(comps) {
         taskcard: true,
         dragged: this.state.dragged
       });
-      var rawMarkup = converter.makeHtml(this.props.task.title);
+      var task = this.props.task;
+      var rawMarkup = converter.makeHtml(task.title);
+      
       return (
         <article onDragStart={this.handleDragStart}     
                  onDragEnd={this.handleDragEnd}
@@ -128,8 +135,9 @@ var TaskComponents = (function(comps) {
           <div className="field" dangerouslySetInnerHTML={{__html: rawMarkup}} />
           <img className="profile-pic"/>
           <div className="task-icons">
-            {this.props.task.details ? <i className="fa fa-align-justify"/> : ''}
-            {this.props.task.date && <i className="fa fa-calendar">{' '+moment(this.props.task.date).format('L')}</i>}
+            {task.details ? <i className="fa fa-align-justify"/> : ''}
+            {task.date && <i className="fa fa-calendar">{' '+moment(task.date).format('L')}</i>}
+            {_.map(task.tags, function(it) { return <i key={'bullet'+it} className={'bullet color-'+it}></i> })}
           </div>
         </article>
       );
@@ -204,11 +212,11 @@ var TaskComponents = (function(comps) {
     },
     render: function() {
       return (
-        <div>
+        <span>
           <input type="text" className="date" ref="datefield"
-                 value={this.state.date && moment(this.state.date).format('L')} placeholder="Date"/> 
-          <button onClick={this.clear}>Clear</button>
-        </div>);
+                 value={this.state.date && moment(this.state.date).format('L')} placeholder="None"/> 
+          { this.state.date && <button onClick={this.clear}>Clear</button>}
+        </span>);
     }
   });
   
