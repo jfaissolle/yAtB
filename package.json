@@ -1,0 +1,28 @@
+{
+  "name": "Yatb",
+  "version": "0.0.0",
+  "description": "Yet Another Task Board",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jfaissolle/yAtB.git"
+  },
+  "keywords": [
+    "todolist"
+  ],
+  "author": "jfaissolle",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/jfaissolle/yAtB/issues"
+  },
+  "homepage": "https://github.com/jfaissolle/yAtB",
+  "devDependencies": {
+    "gulp": "~3.3.1",
+    "gulp-react": "~0.1.0",
+    "gulp-compass": "~1.0.6",
+    "gulp-util": "~2.2.9"
+  }
+}
