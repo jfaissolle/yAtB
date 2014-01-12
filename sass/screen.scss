@@ -123,6 +123,7 @@ textarea {
 
 .editable { 
   @include hoverline();
+  overflow-wrap: break-word;
 }
 
 .spacer {

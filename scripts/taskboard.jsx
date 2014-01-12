@@ -137,29 +137,43 @@
   
 
   var taskboard = {
-    seq: 9,
+    seq: 13,
     tasklanes: [
       {
         name: 'ToDo',
         tasks: [
-          {id: 1, title: 'Prototype UI', tags: [1]},
-          {id: 2, title: 'Send Email to teacher assignment 1'},
+          {id: 1, title: 'Prototype UI', tags: [2]},
+          {id: 2, title: 'Send Email to teacher assignment 1', tags: [1]},
           {id: 7, title: 'Task with details', details: 'Some task details...'},
-          {id: 3, title: 'Send Email to teacher assignment 2'}
+          {id: 3, title: 'Send Email to teacher assignment 2', tags: [2]},
+          {id: 10, title: 'Assignment 3 (Lab)', tags: [3]},
+          {id: 11, title: 'YATB prototype', tags: [4], date: moment("20140113", "YYYYMMDD"),
+           details: "yAtB\n"+
+                    "====\n"+
+                    "\n"+
+                    "Yet Another Task Board\n"+
+                    "\n"+
+                    "Your classical ToDo, Doing, Done stuff.\n"+
+                    "\n"+
+                    "An exercise for practicing HTML5, React and Sass (Compass).\n"+
+                    "\n"+
+                    "[Demo](http://jfaissolle.github.io/yAtB/)\n"
+          },
+          {id: 12, title: 'Send Email to teacher', tags: [4]}
         ]
       },
       {
         name: 'Doing',
         tasks: [
-          {id: 4, title: 'Create Slides', tags: [1]},
-          {id: 5, title: 'Sketch UI'},
+          {id: 4, title: 'Create Slides', tags: [2]},
+          {id: 5, title: 'Sketch UI', tags: [2]},
           {id: 8, title: 'Task with date', date: moment().add('days', 10) }
         ]
       },
       {
         name: 'Done',
         tasks: [
-          {id: 6, title: 'Respond to the six questions', state: 'Done'}
+          {id: 6, title: 'Respond to the six questions', tags: [2]}
         ]
       }
     ],
@@ -180,7 +194,8 @@
   var tags = [
     {id: 1, name: 'Assignment 1'},
     {id: 2, name: 'Assignment 2'},
-    {id: 3, name: 'Assignment 3'}
+    {id: 3, name: 'Assignment 3'},
+    {id: 4, name: 'Assignment 4'}
   ];
 
 
@@ -195,8 +210,9 @@
     }
     
     function updateTask(task) {
+      detail.setProps({task: task});
       taskBoardComp.setProps({taskboard: taskboard});
-      //detail.setProps({task: task});
+
     }
     
     
