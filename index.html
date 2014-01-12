@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="stylesheets/screen.css" media="screen, projection" rel="stylesheet">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet">
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link href="stylesheets/pikaday.css" rel="stylesheet">
+  <!--[if IE]>
+      <link href="stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <![endif]-->  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.0/moment-with-langs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.8.0/react-with-addons.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
+</head>
+<body>
+  <header class="top">
+    <h1>yAtB</h1>
+  </header>
+  <div id="overlay" class="md-overlay"></div>
+  <div id="modal"></div>
+  <div class="main">
+    <aside class="sidebar">
+      <h3>Tags</h3>
+      <div id="taglist"></div>
+    </aside>
+    <div id="taskboard">
+    </div>
+  </div>
+
+  <script src="libs/pikaday.js"></script>
+  <script src="scripts/detail.js"></script>
+  <script src="scripts/taskboard.js"></script>
+</body>
+</html>
