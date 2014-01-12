@@ -72,7 +72,7 @@ body {
   line-height: 1.5;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
   color: #333333;
-  font-size: 75%;
+  font-size: 87.5%;
 }
 
 /* line 51, ../../../../../../usr/share/compass/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
@@ -298,22 +298,22 @@ caption {
   color: #111111;
 }
 
-/* line 22, ../sass/screen.scss */
+/* line 24, ../sass/screen.scss */
 body {
   color: #565656;
 }
 
-/* line 26, ../sass/screen.scss */
+/* line 28, ../sass/screen.scss */
 header.top {
   background: #6d97b3;
 }
-/* line 28, ../sass/screen.scss */
+/* line 30, ../sass/screen.scss */
 header.top h1 {
   color: white;
   padding: 10px;
 }
 
-/* line 34, ../sass/screen.scss */
+/* line 36, ../sass/screen.scss */
 .main {
   min-width: 950px;
   width: 80%;
@@ -323,7 +323,7 @@ header.top h1 {
   margin: 50px 0px 0px 20px;
 }
 
-/* line 39, ../sass/screen.scss */
+/* line 41, ../sass/screen.scss */
 .sidebar {
   display: inline;
   float: left;
@@ -332,12 +332,12 @@ header.top h1 {
   margin-right: 1.042%;
 }
 
-/* line 43, ../sass/screen.scss */
+/* line 45, ../sass/screen.scss */
 .taglist {
   list-style: none;
 }
 
-/* line 47, ../sass/screen.scss */
+/* line 49, ../sass/screen.scss */
 .taskboard {
   min-width: 950px;
   width: 80%;
@@ -351,7 +351,7 @@ header.top h1 {
   margin-right: 0;
 }
 
-/* line 52, ../sass/screen.scss */
+/* line 54, ../sass/screen.scss */
 .tasklane {
   display: inline;
   float: left;
@@ -359,22 +359,22 @@ header.top h1 {
   width: 32.63%;
   margin-right: 1.042%;
 }
-/* line 55, ../sass/screen.scss */
+/* line 57, ../sass/screen.scss */
 .tasklane > div {
   padding-left: 5px;
 }
-/* line 59, ../sass/screen.scss */
+/* line 61, ../sass/screen.scss */
 .tasklane header {
   border-bottom: 2px solid gray;
   padding: 5px;
 }
-/* line 62, ../sass/screen.scss */
+/* line 64, ../sass/screen.scss */
 .tasklane header h2 {
   color: gray;
   margin-bottom: 0px;
 }
 
-/* line 69, ../sass/screen.scss */
+/* line 71, ../sass/screen.scss */
 .tasklane:last-child {
   display: inline;
   float: left;
@@ -383,35 +383,29 @@ header.top h1 {
   margin-right: 0;
 }
 
-/* line 73, ../sass/screen.scss */
+/* line 75, ../sass/screen.scss */
 .taskcard {
   font-size: 0;
   position: relative;
-  border: 1px solid gray;
   padding: 10px;
   margin-right: 8px;
-  background-color: lightyellow;
+  background-color: #fffaad;
   -webkit-box-shadow: 3px 3px 5px rgba(50, 50, 50, 0.75);
   -moz-box-shadow: 3px 3px 5px rgba(50, 50, 50, 0.75);
   box-shadow: 3px 3px 5px rgba(50, 50, 50, 0.75);
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
   cursor: pointer;
 }
-/* line 85, ../sass/screen.scss */
+/* line 84, ../sass/screen.scss */
 .taskcard div {
-  font-size: 12px;
+  font-size: 14px;
 }
 
-/* line 90, ../sass/screen.scss */
+/* line 89, ../sass/screen.scss */
 .field p {
   margin: 0px;
 }
 
-/* line 94, ../sass/screen.scss */
+/* line 93, ../sass/screen.scss */
 textarea {
   width: 100%;
   resize: vertical;
@@ -424,19 +418,23 @@ textarea {
   max-height: 300px;
 }
 
-/* line 106, ../sass/screen.scss */
+/* line 105, ../sass/screen.scss */
 .cardeditor {
   padding: 5px 15px 2px 5px;
   margin-bottom: 10px;
-  background-color: #fffffb;
+  background-color: #fffef6;
 }
-/* line 111, ../sass/screen.scss */
+/* line 110, ../sass/screen.scss */
 .cardeditor textarea {
   min-height: 50px;
   overflow-y: auto;
 }
 
-/* line 119, ../sass/screen.scss */
+/* line 123, ../sass/screen.scss */
+.editable {
+  overflow-wrap: break-word;
+}
+/* line 118, ../sass/screen.scss */
 .editable:hover {
   outline: 2px dashed #0090d2;
 }
@@ -582,39 +580,29 @@ button:hover {
 /* line 198, ../sass/screen.scss */
 .md-content {
   position: relative;
-  background: lightyellow;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
+  background: #fffaad;
   margin: 0 auto;
 }
-/* line 204, ../sass/screen.scss */
+/* line 203, ../sass/screen.scss */
 .md-content button {
   margin: 0;
 }
-/* line 208, ../sass/screen.scss */
+/* line 207, ../sass/screen.scss */
 .md-content > div {
   min-height: 100px;
   padding: 10px;
 }
-/* line 213, ../sass/screen.scss */
+/* line 212, ../sass/screen.scss */
 .md-content header {
   padding: 10px;
   opacity: 0.8;
   background: rgba(0, 0, 0, 0.1);
-  -webkit-border-radius: 3px 3px 0 0;
-  -moz-border-radius: 3px 3px 0 0;
-  -ms-border-radius: 3px 3px 0 0;
-  -o-border-radius: 3px 3px 0 0;
-  border-radius: 3px 3px 0 0;
 }
-/* line 219, ../sass/screen.scss */
+/* line 217, ../sass/screen.scss */
 .md-content header button {
-  font-size: 12px;
+  font-size: 14px;
 }
-/* line 223, ../sass/screen.scss */
+/* line 221, ../sass/screen.scss */
 .md-content header a.close {
   position: absolute;
   top: 0px;
@@ -624,43 +612,44 @@ button:hover {
   color: #999999;
   text-decoration: none;
 }
-/* line 232, ../sass/screen.scss */
+/* line 230, ../sass/screen.scss */
 .md-content header a.close:hover {
   color: #333333;
   cursor: pointer;
 }
-/* line 238, ../sass/screen.scss */
+/* line 236, ../sass/screen.scss */
 .md-content header h3 {
   margin: 0px 30px 0px 0px;
 }
-/* line 243, ../sass/screen.scss */
+/* line 241, ../sass/screen.scss */
 .md-content h4 {
   margin-bottom: 5px;
 }
-/* line 246, ../sass/screen.scss */
+/* line 244, ../sass/screen.scss */
 .md-content .taskdetails {
   padding-left: 10px;
   padding-right: 10px;
   margin-bottom: 10px;
 }
-/* line 249, ../sass/screen.scss */
+/* line 247, ../sass/screen.scss */
 .md-content .taskdetails .editable {
-  min-height: 50px;
+  min-height: 100px;
 }
-/* line 254, ../sass/screen.scss */
+/* line 252, ../sass/screen.scss */
 .md-content input.date {
   width: 100px;
   margin: 5px;
   border: 0;
   outline: none;
   background: transparent;
+  font-weight: bold;
 }
-/* line 119, ../sass/screen.scss */
+/* line 118, ../sass/screen.scss */
 .md-content input.date:hover {
   outline: 2px dashed #0090d2;
 }
 
-/* line 266, ../sass/screen.scss */
+/* line 264, ../sass/screen.scss */
 .md-overlay {
   position: fixed;
   width: 100%;
@@ -677,48 +666,48 @@ button:hover {
   transition: all 0.3s;
 }
 
-/* line 278, ../sass/screen.scss */
+/* line 276, ../sass/screen.scss */
 .md-show {
   visibility: visible;
   opacity: 1;
 }
 
-/* line 286, ../sass/screen.scss */
+/* line 284, ../sass/screen.scss */
 .pika-single .pika-prev, .pika-single .pika-next {
   margin: 0;
   padding: 0px;
 }
-/* line 290, ../sass/screen.scss */
+/* line 288, ../sass/screen.scss */
 .pika-single th, .pika-single td, .pika-single caption {
   padding: 0px;
 }
 
-/* line 299, ../sass/screen.scss */
+/* line 297, ../sass/screen.scss */
 .color-1 {
   background-color: red;
 }
 
-/* line 299, ../sass/screen.scss */
+/* line 297, ../sass/screen.scss */
 .color-2 {
   background-color: yellow;
 }
 
-/* line 299, ../sass/screen.scss */
+/* line 297, ../sass/screen.scss */
 .color-3 {
   background-color: blue;
 }
 
-/* line 299, ../sass/screen.scss */
+/* line 297, ../sass/screen.scss */
 .color-4 {
   background-color: green;
 }
 
-/* line 299, ../sass/screen.scss */
+/* line 297, ../sass/screen.scss */
 .color-5 {
   background-color: black;
 }
 
-/* line 299, ../sass/screen.scss */
+/* line 297, ../sass/screen.scss */
 .color-6 {
   background-color: gray;
 }
