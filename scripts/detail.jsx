@@ -23,15 +23,31 @@ var TaskComponents = (function(comps) {
     handleCancel: function() {
       this.setState({value: this.props.value, editing: false});
     },
-    componentDidUpdate: function() {
+    componentWillUpdate: function() {
+      if (this.refs && this.refs.fieldtext) {
+        this.refs.fieldtext.getDOMNode().innerHTML = '';
+      }
+    },
+    componentDidMount: function() {
       if (this.state.editing) {
         this.refs.textinput.getDOMNode().focus();
+      } else {
+        var rawMarkup = converter.makeHtml(this.state.value);
+        console.log(rawMarkup);
+        this.refs.fieldtext.getDOMNode().innerHTML = rawMarkup;
+      }
+    },
+    componentDidUpdate: function() {
+      if (!this.state.editing) {
+        var rawMarkup = converter.makeHtml(this.state.value);
+        console.log(rawMarkup);
+        this.refs.fieldtext.getDOMNode().innerHTML = rawMarkup;
       }
     },
     render: function() {
       if (!this.state.editing) {
         var rawMarkup = converter.makeHtml(this.state.value);
-        return <div onClick={this.handleEdit} className="field editable" dangerouslySetInnerHTML={{__html: rawMarkup}}/>;
+        return <div ref="fieldtext" onClick={this.handleEdit} className="field editable" />;
       } else {
         return (
           <div>
@@ -88,7 +104,8 @@ var TaskComponents = (function(comps) {
                         onChange={this.onFieldChange.bind(this, 'date')} />
               </p>
               <p>
-              Tags: {_.map(task.tags, function(it) { return <i key={'bullet'+it} className={'bullet color-'+it}></i> })}
+              Tags: {_.map(task.tags, function(it) { 
+                     return <i key={'bullet'+it} className={'bullet color-'+it}></i> })}
               </p>
             </div>
           </div>
